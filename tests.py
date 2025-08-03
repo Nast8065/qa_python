@@ -92,3 +92,13 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Ходячие мертвецы')
         collector.delete_book_from_favorites('Ходячие мертвецы')
         assert len(collector.favorites) == 0
+
+        #проверяем, вывод списка избранных книг
+    def test_get_list_of_favorites_books_got_list(self):
+        collector = BooksCollector()
+        collector.add_new_book('Что делать, если ваш кот хочет вас убить')
+        collector.add_new_book('Ходячие мертвецы')
+        collector.add_new_book('Маша и медведь')
+        collector.add_book_in_favorites('Ходячие мертвецы')
+        collector.add_book_in_favorites('Маша и медведь')
+        assert collector.get_list_of_favorites_books() == ['Ходячие мертвецы', 'Маша и медведь']
