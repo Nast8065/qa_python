@@ -22,3 +22,11 @@ class TestBooksCollector:
 
     # напиши свои тесты ниже
     # чтобы тесты были независимыми в каждом из них создавай отдельный экземпляр класса BooksCollector()
+	
+	#проверяем, что у любой из добавленных книг нет жанра
+    def test_add_new_book_one_book_has_no_genre(self):
+        collector = BooksCollector()
+        collector.add_new_book('Гордость и предубеждение и зомби')
+        assert collector.books_genre['Гордость и предубеждение и зомби'] == ''
+
+
