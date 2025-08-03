@@ -75,3 +75,12 @@ class TestBooksCollector:
         collector.set_book_genre('Ходячие мертвецы', 'Ужасы')
         assert collector.get_books_for_children() == ['Маша и медведь']
 
+        #проверяем, что книга добавляется в избранное
+    def test_add_book_in_favorites_one_book_add_to_favorite(self):
+        collector = BooksCollector()
+        collector.add_new_book('Маша и медведь')
+        collector.add_new_book('Ходячие мертвецы')
+        collector.add_book_in_favorites('Ходячие мертвецы')
+        assert 'Ходячие мертвецы' in collector.favorites
+
+
