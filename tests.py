@@ -43,7 +43,7 @@ class TestBooksCollector:
         assert collector.get_book_genre('Шерлок') == 'Детективы'
 
 
-        #проверяем, вывод списока книг с опредененным жанром
+        #проверяем, вывод списка книг с определенным жанром
     def test_get_books_with_specific_genre_two_horror_book(self):
         collector = BooksCollector()
         collector.add_new_book('Что делать, если ваш кот хочет вас убить')
