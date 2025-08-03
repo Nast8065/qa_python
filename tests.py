@@ -43,7 +43,7 @@ class TestBooksCollector:
         assert collector.get_book_genre('Шерлок') == 'Детективы'
 
 
-        #Проверяем, вывод списока книг с опредененным жанром
+        #проверяем, вывод списока книг с опредененным жанром
     def test_get_books_with_specific_genre_two_horror_book(self):
         collector = BooksCollector()
         collector.add_new_book('Что делать, если ваш кот хочет вас убить')
@@ -54,3 +54,14 @@ class TestBooksCollector:
         collector.set_book_genre('Гордость и предубеждение и зомби', 'Ужасы')
         result = collector.get_books_with_specific_genre('Ужасы')
         assert result == ['Ходячие мертвецы', 'Гордость и предубеждение и зомби']
+
+        #проверяем, что выводится словарь books_genre
+    def test_get_books_genre_of_three_books(self):
+        collector = BooksCollector()
+        collector.add_new_book('Что делать, если ваш кот хочет вас убить')
+        collector.set_book_genre('Что делать, если ваш кот хочет вас убить', 'Фантастика')
+        collector.add_new_book('Ходячие мертвецы')
+        collector.set_book_genre('Ходячие мертвецы', 'Ужасы')
+        collector.add_new_book('Гордость и предубеждение и зомби')
+        collector.set_book_genre('Гордость и предубеждение и зомби', 'Ужасы')
+        assert collector.get_books_genre() == {'Что делать, если ваш кот хочет вас убить' : 'Фантастика', 'Ходячие мертвецы' : 'Ужасы', 'Гордость и предубеждение и зомби' : 'Ужасы'}
