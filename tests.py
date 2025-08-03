@@ -64,4 +64,14 @@ class TestBooksCollector:
         collector.set_book_genre('Ходячие мертвецы', 'Ужасы')
         collector.add_new_book('Гордость и предубеждение и зомби')
         collector.set_book_genre('Гордость и предубеждение и зомби', 'Ужасы')
-        assert collector.get_books_genre() == {'Что делать, если ваш кот хочет вас убить' : 'Фантастика', 'Ходячие мертвецы' : 'Ужасы', 'Гордость и предубеждение и зомби' : 'Ужасы'}
+        assert collector.get_books_genre() == {'Что делать, если ваш кот хочет вас убить' : 'Фантастика', 'Ходячие мертвецы' : 'Ужасы', 'Гордость и предубеждение и зомби' : 'Ужасы'} 
+
+        #проверяем, что выводятся книги, подходящие детям
+    def test_get_books_for_children_one_book_display_cartoons(self):
+        collector = BooksCollector()
+        collector.add_new_book('Маша и медведь')
+        collector.set_book_genre('Маша и медведь', 'Мультфильмы')
+        collector.add_new_book('Ходячие мертвецы')
+        collector.set_book_genre('Ходячие мертвецы', 'Ужасы')
+        assert collector.get_books_for_children() == ['Маша и медведь']
+
