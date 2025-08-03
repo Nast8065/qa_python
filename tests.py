@@ -102,3 +102,8 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Ходячие мертвецы')
         collector.add_book_in_favorites('Маша и медведь')
         assert collector.get_list_of_favorites_books() == ['Ходячие мертвецы', 'Маша и медведь']
+        #проверяем, что нельзя добавить новую книгу с названием больше 40 символов
+    def test_add_new_book_name_of_book_over_40_symb_not_added(self, collector):
+        collector.add_new_book('Маша и медведь')
+        collector.add_new_book('Маша и медведь и слон и кот и пёс и волк и много разных животных')
+        assert len(collector.books_genre) == 1
