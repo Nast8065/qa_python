@@ -29,4 +29,10 @@ class TestBooksCollector:
         collector.add_new_book('Гордость и предубеждение и зомби')
         assert collector.books_genre['Гордость и предубеждение и зомби'] == ''
 
+	 #проверяем, что книге можно установить жанр
+    def test_set_book_genre_one_book_can_set_the_genre(self):
+        collector = BooksCollector()
+        collector.add_new_book('Ходячие мертвецы')
+        collector.set_book_genre('Ходячие мертвецы', 'Ужасы')
+        assert collector.books_genre['Ходячие мертвецы'] == 'Ужасы'
 
