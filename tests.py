@@ -84,3 +84,11 @@ class TestBooksCollector:
         assert 'Ходячие мертвецы' in collector.favorites
 
 
+        #проверяем, что книгу можно удалить из избранного
+    def test_delete_book_from_favorites_was_deleted_one_book(self):
+        collector = BooksCollector()
+        collector.add_new_book('Маша и медведь')
+        collector.add_new_book('Ходячие мертвецы')
+        collector.add_book_in_favorites('Ходячие мертвецы')
+        collector.delete_book_from_favorites('Ходячие мертвецы')
+        assert len(collector.favorites) == 0
