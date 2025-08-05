@@ -23,12 +23,6 @@ class TestBooksCollector:
     # напиши свои тесты ниже
     # чтобы тесты были независимыми в каждом из них создавай отдельный экземпляр класса BooksCollector()
 
-	#проверяем, что у любой из добавленных книг нет жанра
-    def test_add_new_book_one_book_has_no_genre(self):
-        collector = BooksCollector()
-        collector.add_new_book('Гордость и предубеждение и зомби')
-        assert collector.books_genre['Гордость и предубеждение и зомби'] == ''
-
 	#проверяем, что книге можно установить жанр
     def test_set_book_genre_one_book_can_set_the_genre(self):
         collector = BooksCollector()
@@ -41,7 +35,6 @@ class TestBooksCollector:
         collector.add_new_book('Шерлок')
         collector.set_book_genre('Шерлок', 'Детективы')
         assert collector.get_book_genre('Шерлок') == 'Детективы'
-
 
         #проверяем, вывод списка книг с определенным жанром
     def test_get_books_with_specific_genre_two_horror_book(self):
@@ -83,7 +76,6 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Ходячие мертвецы')
         assert 'Ходячие мертвецы' in collector.favorites
 
-
         #проверяем, что книгу можно удалить из избранного
     def test_delete_book_from_favorites_was_deleted_one_book(self):
         collector = BooksCollector()
@@ -102,8 +94,16 @@ class TestBooksCollector:
         collector.add_book_in_favorites('Ходячие мертвецы')
         collector.add_book_in_favorites('Маша и медведь')
         assert collector.get_list_of_favorites_books() == ['Ходячие мертвецы', 'Маша и медведь']
-        #проверяем, что нельзя добавить новую книгу с названием больше 40 символов
+        
+	#проверяем, что нельзя добавить новую книгу с названием больше 40 символов
     def test_add_new_book_name_of_book_over_40_symb_not_added(self, collector):
         collector.add_new_book('Маша и медведь')
         collector.add_new_book('Маша и медведь и слон и кот и пёс и волк и много разных животных')
         assert len(collector.books_genre) == 1
+	
+	#проверяем, что одну и ту же книгу можно добавить только один раз
+    def test_add_new_book_Identical_books_can_only_be_added_once(self):
+        collector = BooksCollector()
+        collector.add_new_book('Гордость и предубеждение и зомби')
+        collector.add_new_book('Гордость и предубеждение и зомби')
+        assert len(collector.get_books_rating()) == 1
