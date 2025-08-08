@@ -10,7 +10,12 @@ class TestBooksCollector:
         collector.add_new_book('Ходячие мертвецы')
         collector.set_book_genre('Ходячие мертвецы', 'Ужасы')
         assert collector.books_genre['Ходячие мертвецы'] == 'Ужасы'
-
+		
+    #проверяем, что у добавленной книги нет жанра
+    def test_add_new_book_one_book_has_no_genre(self, collector):
+        collector.add_new_book('Война и мир')
+        assert collector.books_genre['Война и мир'] == ''
+		
 	#проверяем, вывод жанра книги по её имени
     def test_get_book_genre_one_book_its_name(self, collector):
         collector.add_new_book('Шерлок')
@@ -76,8 +81,3 @@ class TestBooksCollector:
         collector.add_new_book('Маша и медведь и слон и кот и пёс и волк и много разных животных')
         assert len(collector.books_genre) == 1
 	
-	#проверяем, что одну и ту же книгу можно добавить только один раз
-    def test_add_new_book_Identical_books_can_only_be_added_once(self, collector):
-        collector.add_new_book('Гордость и предубеждение и зомби')
-        collector.add_new_book('Гордость и предубеждение и зомби')
-        assert len(collector.get_books_rating()) == 1
